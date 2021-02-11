@@ -1,42 +1,61 @@
 package ua.lviv.lgs.service.impl;
 
+import org.apache.log4j.Logger;
 import ua.lviv.lgs.dao.BucketDao;
 import ua.lviv.lgs.dao.impl.BucketDaoImpl;
+import ua.lviv.lgs.dao.impl.ProductDaoImpl;
 import ua.lviv.lgs.domain.Bucket;
 import ua.lviv.lgs.service.BucketService;
+import ua.lviv.lgs.service.ProductService;
 
 import java.sql.SQLException;
 import java.util.List;
 
 public class BucketServiceImpl implements BucketService {
     private BucketDao bucketDao;
+    private static BucketService bucketServiceImpl;
+    private static Logger LOGGER = Logger.getLogger(BucketServiceImpl.class);
 
-    public BucketServiceImpl() throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
-        bucketDao = new BucketDaoImpl();
+    private BucketServiceImpl() {
+
+        try {
+            bucketDao = new BucketDaoImpl();
+        } catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException e) {
+
+            LOGGER.error(e);
+        }
+
+    }
+
+    public static BucketService getBucketService() {
+        if (bucketServiceImpl == null) {
+            bucketServiceImpl = new BucketServiceImpl();
+        }
+        return bucketServiceImpl;
     }
 
     @Override
-    public Bucket create(Bucket bucket) throws SQLException, SQLException {
+    public Bucket create(Bucket bucket) {
         return bucketDao.create(bucket);
     }
 
     @Override
-    public Bucket read(Integer id) throws SQLException {
+    public Bucket read(Integer id)  {
         return bucketDao.read(id);
     }
 
     @Override
-    public Bucket update(Bucket bucket) throws SQLException {
+    public Bucket update(Bucket bucket)  {
         return bucketDao.update(bucket);
     }
 
     @Override
-    public void delete(Integer id) throws SQLException {
+    public void delete(Integer id)  {
         bucketDao.delete(id);
     }
 
     @Override
-    public List<Bucket> readAll() throws SQLException {
+    public List<Bucket> readAll()  {
         return bucketDao.readAll();
     }
 }

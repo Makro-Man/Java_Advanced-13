@@ -8,20 +8,23 @@ public class User {
     private String firstName;
     private String lastName;
     private String role;
+    private String password;
 
-    public User(Integer id, String firstName, String lastName, String email, String role) {
+    public User(Integer id, String email, String firstName, String lastName, String role, String password) {
         this.id = id;
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
         this.role = role;
+        this.password = password;
     }
 
-    public User(String firstName, String lastName, String email,  String role) {
+    public User(String email, String firstName, String lastName, String role, String password) {
+        this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.email = email;
         this.role = role;
+        this.password = password;
     }
 
     public Integer getId() {
@@ -64,17 +67,67 @@ public class User {
         this.role = role;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return id.equals(user.id) && email.equals(user.email) && firstName.equals(user.firstName) && lastName.equals(user.lastName) && role.equals(user.role);
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, email, firstName, lastName, role);
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((email == null) ? 0 : email.hashCode());
+        result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
+        result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
+        result = prime * result + ((password == null) ? 0 : password.hashCode());
+        result = prime * result + ((role == null) ? 0 : role.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        User other = (User) obj;
+        if (email == null) {
+            if (other.email != null)
+                return false;
+        } else if (!email.equals(other.email))
+            return false;
+        if (firstName == null) {
+            if (other.firstName != null)
+                return false;
+        } else if (!firstName.equals(other.firstName))
+            return false;
+        if (id == null) {
+            if (other.id != null)
+                return false;
+        } else if (!id.equals(other.id))
+            return false;
+        if (lastName == null) {
+            if (other.lastName != null)
+                return false;
+        } else if (!lastName.equals(other.lastName))
+            return false;
+        if (password == null) {
+            if (other.password != null)
+                return false;
+        } else if (!password.equals(other.password))
+            return false;
+        if (role == null) {
+            if (other.role != null)
+                return false;
+        } else if (!role.equals(other.role))
+            return false;
+        return true;
     }
 
     @Override
@@ -85,6 +138,7 @@ public class User {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", role='" + role + '\'' +
+                ", password='" + password + '\'' +
                 '}';
     }
 }
