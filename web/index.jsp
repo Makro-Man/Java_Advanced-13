@@ -17,7 +17,6 @@
     <title>shop</title>
 </head>
 <body>
-<jsp:include page="header.jsp"></jsp:include>
 <div class="login-page">
     <div class="form">
         <form class="register-form">
@@ -50,6 +49,7 @@
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <script src="js/login.js"></script>
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
 </body>
 </html>

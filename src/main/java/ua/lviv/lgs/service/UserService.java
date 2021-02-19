@@ -4,5 +4,5 @@ import ua.lviv.lgs.domain.User;
 import ua.lviv.lgs.shared.AbstractDao;
 
 public interface UserService extends AbstractDao<User> {
-    User getUserFromEmail (String email);
+    User getUserFromEmail(String email);
 }

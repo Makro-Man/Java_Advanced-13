@@ -13,11 +13,11 @@ public class UserDaoImpl implements UserDao {
     static String READ_ALL = "select * from user";
     static String CREATE = "insert user(first_name, last_name, email, role, password) values (?,?,?,?,?)";
     static String READ_BY_ID = "select * from user where id=?";
-    static String READ_BY_EMAIL = "select * from user where 'email'=?";
+    static String READ_BY_EMAIL = "select * from user where email=?";
     static String UPDATE_BY_ID = "update user set email=?,first_name=?,last_name=?,role=?,password=? where id=?";
     static String DELETE_BY_ID = "delete from user where id=?";
 
-    private static final Logger LOGGER = Logger.getLogger(ProductDaoImpl.class);
+    private static final Logger LOGGER = Logger.getLogger(UserDaoImpl.class);
 
     public UserDaoImpl() throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
         connection = ConnectionUtils.openConnection();
@@ -106,7 +106,7 @@ public class UserDaoImpl implements UserDao {
             ResultSet res = preparedStatement.executeQuery();
             while (res.next()) {
                 int id = res.getInt("id");
-                String firstName = res.getString("firs_name");
+                String firstName = res.getString("first_name");
                 String lastName = res.getString("last_name");
                 String email = res.getString("email");
                 String role = res.getString("role");
@@ -129,8 +129,8 @@ public class UserDaoImpl implements UserDao {
             ResultSet result = preparedStatement.executeQuery();
             result.next();
             Integer userId = result.getInt("id");
-            String firstName = result.getString("firstName");
-            String lastName = result.getString("lastName");
+            String firstName = result.getString("first_name");
+            String lastName = result.getString("last_name");
             String role = result.getString("role");
             String password = result.getString("password");
 

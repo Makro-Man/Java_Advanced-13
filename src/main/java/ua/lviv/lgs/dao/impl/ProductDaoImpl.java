@@ -11,9 +11,9 @@ import java.util.List;
 
 public class ProductDaoImpl implements ProductDao {
     static String READ_ALL = "select * from product";
-    static String CREATE = "insert product(product_name, description, price) values (?,?,?)";
+    static String CREATE = "insert product(name, description, price) values (?,?,?)";
     static String READ_BY_ID = "select * from product where id=?";
-    static String UPDATE_BY_ID = "update product set name_magazines=?,description=?,price=? where id=?";
+    static String UPDATE_BY_ID = "update product set name=?,description=?,price=? where id=?";
     static String DELETE_BY_ID = "delete from product where id=?";
 
     private static Logger LOGGER = Logger.getLogger(ProductDaoImpl.class);
@@ -27,9 +27,9 @@ public class ProductDaoImpl implements ProductDao {
     }
 
     @Override
-    public Product create(Product product)  {
+    public Product create(Product product) {
         try {
-            preparedStatement = connection.prepareStatement(CREATE, java.sql.Statement.RETURN_GENERATED_KEYS);
+            preparedStatement = connection.prepareStatement(CREATE, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, product.getName());
             preparedStatement.setString(2, product.getDescription());
             preparedStatement.setDouble(3, product.getPrice());
@@ -38,9 +38,7 @@ public class ProductDaoImpl implements ProductDao {
             ResultSet rs = preparedStatement.getGeneratedKeys();
             rs.next();
             product.setId(rs.getInt(1));
-
         } catch (SQLException e) {
-
             LOGGER.error(e);
         }
 
@@ -102,7 +100,7 @@ public class ProductDaoImpl implements ProductDao {
         }
     }
 
-    public List<Product> readAll()  {
+    public List<Product> readAll(){
         List<Product> productRecords = new ArrayList<>();
         try {
             preparedStatement = connection.prepareStatement(READ_ALL);
