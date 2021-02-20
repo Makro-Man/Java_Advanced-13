@@ -1,5 +1,3 @@
-package ua.lviv.lgs.servlet;
-
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,6 +14,7 @@ public class ProductController extends HttpServlet {
 
     ProductService productService = ProductServiceImpl.getProductService();
 
+    // to create resource (product)
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String name = request.getParameter("name");
@@ -36,18 +35,26 @@ public class ProductController extends HttpServlet {
         return Double.parseDouble(price);
     }
 
+    // to get resource (product)
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String productId = request.getParameter("id");
 
+        Product product = productService.read(Integer.parseInt(productId));
+
+        request.setAttribute("product", product);
+        request.getRequestDispatcher("singleProduct.jsp").forward(request, response);
     }
 
+    // to update resource (product)
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         super.doPut(req, resp);
     }
 
+    // to delete resource (product)
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 

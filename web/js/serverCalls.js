@@ -11,6 +11,7 @@ $("button.createProduct")
                 description : description,
                 price : price
             };
+//add validation
             $.post("product", product,
                 function(data) {
                     if (data == 'Success') {
@@ -22,3 +23,16 @@ $("button.createProduct")
                 });
 
         });
+
+$("button.buy-product").click(function() {
+    var productId = jQuery(this).attr("product-id");
+
+
+    $.post("bucket", {'productId':productId},
+        function(data) {
+            if (data == 'Success') {
+                $('#buyProductModal').modal('hide');
+                alert('Success');
+            }
+        });
+});
