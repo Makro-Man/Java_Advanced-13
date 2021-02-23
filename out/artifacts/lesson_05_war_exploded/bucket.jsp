@@ -17,16 +17,20 @@
           href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
           integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
           crossorigin="anonymous">
+
+    <link rel="stylesheet" href="css/bucket.css">
+
 </head>
 <body>
 <jsp:include page="header.jsp"></jsp:include>
 
 <div class="container-fluid">
-    <div class="row">
+    <input type="text" id="myInput" onkeyup="myFunction()"
+           placeholder="Search for names.." title="Type in a name">
 
-        <h1>Bucket of Product</h1>
+    <table id="myTable">
+    </table>
 
-    </div>
 
 </div>
 
@@ -48,5 +52,6 @@
 <script
         src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="js/header.js"></script>
+<script src="js/bucket.js"></script>
 </body>
 </html>

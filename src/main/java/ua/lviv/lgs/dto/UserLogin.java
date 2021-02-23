@@ -1,4 +1,4 @@
-package ua.lviv.lgs.dti;
+package ua.lviv.lgs.dto;
 
 public class UserLogin {
     public String userEmail;
