@@ -46,9 +46,9 @@ public class BucketsController extends HttpServlet {
         return	buckets.stream().map(bucket->{
             BucketDto bucketDto = new BucketDto();
             bucketDto.bucketId = bucket.getId();
-            bucketDto.purchase_date = bucket.getPurchase_date();
+            bucketDto.purchaseDate = bucket.getPurchaseDate();
 
-            Product product = idToProduct.get(bucket.getProduct_id());
+            Product product = idToProduct.get(bucket.getProduct().getId());
             bucketDto.name = product.getName();
             bucketDto.description = product.getDescription();
             bucketDto.price = product.getPrice();

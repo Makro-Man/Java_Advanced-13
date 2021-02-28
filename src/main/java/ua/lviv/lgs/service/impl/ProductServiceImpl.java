@@ -1,31 +1,22 @@
 package ua.lviv.lgs.service.impl;
 
-import org.apache.log4j.Logger;
-import ua.lviv.lgs.dao.ProductDao;
-import ua.lviv.lgs.dao.impl.ProductDaoImpl;
-import ua.lviv.lgs.domain.Product;
-import ua.lviv.lgs.service.ProductService;
-import ua.lviv.lgs.service.UserService;
-
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import ua.lviv.lgs.dao.ProductDao;
+import ua.lviv.lgs.dao.impl.ProductDaoImpl;
+import ua.lviv.lgs.domain.Product;
+import ua.lviv.lgs.service.ProductService;
+
 public class ProductServiceImpl implements ProductService {
-    private static Logger LOGGER = Logger.getLogger(ProductServiceImpl.class);
     private static ProductService productServiceImpl;
     private ProductDao productDao;
 
     private ProductServiceImpl() {
 
-        try {
-            productDao = new ProductDaoImpl();
-        } catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException e) {
-
-            LOGGER.error(e);
-        }
+        productDao = new ProductDaoImpl();
 
     }
 
@@ -33,12 +24,13 @@ public class ProductServiceImpl implements ProductService {
         if (productServiceImpl == null) {
             productServiceImpl = new ProductServiceImpl();
         }
+
         return productServiceImpl;
     }
 
     @Override
-    public Product create(Product product)  {
-        return productDao.create(product);
+    public Product create(Product t) {
+        return productDao.create(t);
     }
 
     @Override
@@ -47,18 +39,17 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product update(Product product)  {
-        return productDao.update(product);
+    public Product update(Product t) {
+        return productDao.update(t);
     }
 
     @Override
     public void delete(Integer id) {
-
         productDao.delete(id);
     }
 
     @Override
-    public List<Product> readAll()  {
+    public List<Product> readAll() {
         return productDao.readAll();
     }
 
